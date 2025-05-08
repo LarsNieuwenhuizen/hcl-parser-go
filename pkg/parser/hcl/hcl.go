@@ -38,7 +38,11 @@ type Local struct {
 
 // Variable represents a Terraform variable.
 type Variable struct {
-	Attributes map[string]any
+	Name        string
+	Type        string
+	Description string
+	Default     string
+	Attributes  map[string]any
 }
 
 // Config represents the Terraform configuration.
@@ -96,6 +100,7 @@ func parseSingleFile(file string, hclParser *hclparse.Parser, config *Config) er
 	config.Modules = append(config.Modules, parsedConfig.Modules...)
 	config.Resources = append(config.Resources, parsedConfig.Resources...)
 	config.Locals = append(config.Locals, parsedConfig.Locals...)
+	config.Variables = append(config.Variables, parsedConfig.Variables...)
 
 	return nil
 }
@@ -122,6 +127,7 @@ func parseConfig(file *hcl.File) *Config {
 	resources := make([]*Resource, 0)
 	modules := make([]*Module, 0)
 	locals := make([]*Local, 0)
+	variables := make([]*Variable, 0)
 
 	for _, block := range file.Body.(*hclsyntax.Body).Blocks {
 		switch block.Type {
@@ -131,10 +137,12 @@ func parseConfig(file *hcl.File) *Config {
 			resources = append(resources, parseResource(block))
 		case "locals":
 			locals = append(locals, parseLocals(block))
+		case "variable":
+			variables = append(variables, parseVariable(block))
 		}
 	}
 
-	return &Config{Resources: resources, Modules: modules, Locals: locals}
+	return &Config{Resources: resources, Modules: modules, Locals: locals, Variables: variables}
 }
 
 // parseModule extracts module configuration from a block.
@@ -203,6 +211,31 @@ func parseLocals(block *hclsyntax.Block) *Local {
 	}
 
 	return local
+}
+
+// parseVariable extracts variables configuration from a block.
+func parseVariable(block *hclsyntax.Block) *Variable {
+	variable := &Variable{
+		Attributes: map[string]any{},
+	}
+
+	variable.Name = block.Labels[0]
+
+	for _, attribute := range block.Body.Attributes {
+		value := evaluateExpression(attribute.Expr)
+		switch attribute.Name {
+		case "type":
+			variable.Type = value.(string)
+		case "description":
+			variable.Description = value.(string)
+		case "default":
+			variable.Default = value.(string)
+		default:
+			variable.Attributes[attribute.Name] = value
+		}
+	}
+
+	return variable
 }
 
 func buildVarExpressions(traversal hcl.Traversal) string {
