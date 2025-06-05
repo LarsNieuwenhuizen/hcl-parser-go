@@ -13,7 +13,7 @@ import (
 	"github.com/zclconf/go-cty/cty"
 	"github.com/zclconf/go-cty/cty/gocty"
 
-	"github.com/joselitofilho/hcl-parser-go/internal/fmtcolor"
+	"github.com/larsnieuwenhuizen/hcl-parser-go/internal/fmtcolor"
 )
 
 // Resource represents a Terraform resource.

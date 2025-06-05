@@ -1,4 +1,4 @@
-module github.com/joselitofilho/hcl-parser-go
+module github.com/larsnieuwenhuizen/hcl-parser-go
 
 go 1.21.6
 
