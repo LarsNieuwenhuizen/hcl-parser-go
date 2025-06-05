@@ -2,17 +2,19 @@
 
 # hcl-parser-go
 
-[![GitHub tag](https://img.shields.io/github/release/joselitofilho/hcl-parser-go?include_prereleases=&sort=semver&color=2ea44f&style=for-the-badge)](https://github.com/joselitofilho/hcl-parser-go/releases/)
+[![GitHub tag](https://img.shields.io/github/release/larsnieuwenhuizen/hcl-parser-go?include_prereleases=&sort=semver&color=2ea44f&style=for-the-badge)](https://github.com/joselitofilho/hcl-parser-go/releases/)
 [![Go Report Card](https://goreportcard.com/badge/github.com/joselitofilho/hcl-parser-go?style=for-the-badge)](https://goreportcard.com/report/github.com/joselitofilho/hcl-parser-go)
 [![Code coverage](https://img.shields.io/badge/Coverage-90.4%25-2ea44f?style=for-the-badge)](#)
 
 [![Made with Golang](https://img.shields.io/badge/Golang-1.21.6-blue?logo=go&logoColor=white&style=for-the-badge)](https://go.dev "Go to Golang homepage")
 
-[![BuyMeACoffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/joselitofilho)
-
 </div>
 
 # Overview
+
+Originally forked from https://github.com/joselitofilho/hcl-parser-go
+
+---
 
 This is a GoLang library designed to parse Terraform configuration files written in HashiCorp Configuration Language (HCL). 
 It allows extracting resources, modules, variables, and locals defined in these configuration files.
@@ -20,7 +22,7 @@ It allows extracting resources, modules, variables, and locals defined in these 
 ## How to Use
 
 ```bash
-$ go get github.com/joselitofilho/hcl-parser-go@latest
+$ go get github.com/larsnieuwenhuizen/hcl-parser-go@latest
 ```
 
 ## Key Features
@@ -134,4 +136,4 @@ Contributions are welcome! If you find any issues or have suggestions for improv
 This project is licensed under the [MIT License](LICENSE).
 
 [diagrams]: https://app.diagrams.net/
-[issues]: https://github.com/joselitofilho/hcl-parser-go/issues
+[issues]: https://github.com/larsnieuwenhuizen/hcl-parser-go/issues
