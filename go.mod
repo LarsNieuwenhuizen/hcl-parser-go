@@ -1,6 +1,6 @@
 module github.com/larsnieuwenhuizen/hcl-parser-go
 
-go 1.21.6
+go 1.23.8
 
 require (
 	github.com/fatih/color v1.16.0
